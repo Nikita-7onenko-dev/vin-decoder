@@ -1,0 +1,76 @@
+
+/* Vin-Form */
+
+.vin-form{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.vin-form__label{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 9;
+  flex-basis: 350px;
+}
+
+.vin-form__input{
+  padding: 12px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--main-color);
+  background-color: transparent;
+  color: var(--main-color);
+  transition: border-color .3s ease, color .3s ease;
+
+  &:focus{
+    border-color: var(--white);
+    color: var(--white);
+  }
+}
+
+.vin-form__input--error{
+  border-radius:  0 0 4px 4px;
+  border-color: var(--error-color);
+} 
+
+.vin-form__error-message{
+  color: var(--white);
+  font-size: clamp(14px, 1.8vw, 17px);
+  background-color: var(--error-color);
+  border-radius: 4px 4px 0px 0px;
+  padding-inline: clamp(8px, 1.5vw, 12px);
+  padding-block: 4px;
+}
+
+
+
+/* Vin-History */
+
+.vin-history{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+
+  p{
+    font-size: clamp(14px, 1.8vw, 17px);
+  }
+
+  ul{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    li{
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+    }
+  }
+}
+
+/* @media screen and (max-width: 490px) {
+  .vin-history {
+    align-items: normal;
+  }
+} */

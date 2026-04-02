@@ -1,0 +1,45 @@
+
+.variables-hat{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.variable-details{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  div:not(.variable-details__header) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    ul li{
+      list-style: disc;
+      margin-left: 20px;
+    };
+  }
+}
+
+.variable-details__header{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+
+  a{
+    font-size: clamp(18px, 1.8vw, 24px);
+    max-width: fit-content;
+    display: flex;
+    align-items: start;
+    gap: 5px;
+  }
+
+  h2{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+}
