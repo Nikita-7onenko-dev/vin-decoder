@@ -3,7 +3,7 @@
 Single Page Application для декодирования VIN-кодов с использованием API NHTSA.
 
 🔗 **Live demo:**
-([Открыть демо на GitHub Pages](https://nikita-7onenko-dev.github.io/vin-decoder/#/))
+[Открыть демо на GitHub Pages](https://nikita-7onenko-dev.github.io/vin-decoder/#/)
 
 ---
 
