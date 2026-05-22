@@ -3,13 +3,13 @@ import { handleResponseError, normalizeError } from "../shared/http";
 import type { Variable, VariablesResponse } from "./variables.types";
 import normalizeVariablesList from "./variables.utils";
 
-export async function fetchAllVariables(): Promise<Variable[]> {
+export async function fetchAllVariables(signal?: AbortSignal): Promise<Variable[]> {
 
   try {
 
-    const response = await fetch(API_CONFIG.BASE_URL + "vehicles/getvehiclevariablelist?format=json");
+    const response = await fetch(API_CONFIG.BASE_URL + "vehicles/getvehiclevariablelist?format=json", {signal});
     if(!response.ok) {
-      handleResponseError(response.status);
+      throw handleResponseError(response.status);
     }
 
     const data: VariablesResponse = await response.json();
@@ -17,6 +17,7 @@ export async function fetchAllVariables(): Promise<Variable[]> {
 
 
   } catch(err) {
+    if(err instanceof DOMException && err.name === "AbortError") throw err;
     throw normalizeError(err);
   }
 }

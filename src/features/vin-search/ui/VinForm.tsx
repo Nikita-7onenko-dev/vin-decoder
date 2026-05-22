@@ -1,8 +1,8 @@
 import { formDataValidator } from "@/shared/lib/formDataValidator";
-import { useEffect, useState, type SetStateAction } from "react";
+import { useEffect, useState } from "react";
 import { finalFormValidation } from "@/shared/lib/finalFormValidator";
 
-type FormDataType = {
+export type FormDataType = {
   vin: string;
 }
 
@@ -15,22 +15,30 @@ const initFormDataFields = {
 }
 
 type Props = {
-  setValidVin: React.Dispatch<SetStateAction<string>>;
+  setValidVin: React.Dispatch<React.SetStateAction<string>>;
   addVinToHistory: (vin: string) => void;
-  externalVin: string;
+  autoFill: string;
+  setAutoFill: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function VinForm({setValidVin, addVinToHistory, externalVin}: Props): React.JSX.Element {
+export default function VinForm({setValidVin, addVinToHistory, autoFill, setAutoFill}: Props): React.JSX.Element {
 
   const [formData, setFormData] = useState<FormDataType>(initFormDataFields);
   const [errors, setErrors] = useState<FormDataType>(initFormDataFields);
 
   useEffect(() => {
+    if(!autoFill) return;
+
     setFormData(fd => ({
       ...fd,
-      vin: externalVin
+      vin: autoFill
     }));
-  }, [externalVin])
+
+    setErrors(err => ({
+      ...err,
+      vin: formDataValidator.vin(autoFill)
+    }))
+  }, [autoFill])
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
       const {name: field, value: _value} = e.target;
@@ -45,11 +53,13 @@ export default function VinForm({setValidVin, addVinToHistory, externalVin}: Pro
         ...prev,
         [field as keyof FormDataType]: formDataValidator[field as keyof FormDataType](upperCaseVal)
       }));
+
+      setAutoFill("");
   }
 
   const submitHandler = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const {hasErrors, newErrorData} = finalFormValidation(formData, errors);
+    const {hasErrors, newErrorData} = finalFormValidation(formData, errors, formDataValidator);
     
     if(hasErrors) {
       setErrors(newErrorData);
@@ -57,6 +67,16 @@ export default function VinForm({setValidVin, addVinToHistory, externalVin}: Pro
     }
     setValidVin(formData.vin);
     addVinToHistory(formData.vin);
+  }
+
+  const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+    const {name, value} = e.target;
+    if(value) return;
+
+    setErrors(err => ({
+      ...err,
+      [name]: ""
+    }))
   }
 
   const formInputs = Object.keys(formData).map(field => (
@@ -72,6 +92,7 @@ export default function VinForm({setValidVin, addVinToHistory, externalVin}: Pro
         value={formData[field as keyof FormDataType]}
         placeholder={placeholders?.[field as keyof FormDataType]}
         onChange={changeHandler}
+        onBlur={blurHandler}
       />
     </label>
   ))
@@ -85,6 +106,7 @@ export default function VinForm({setValidVin, addVinToHistory, externalVin}: Pro
       <button 
         className="main-button"
         type="submit"
+        disabled={finalFormValidation(formData, errors, formDataValidator).hasErrors}
       >
         Decode
       </button>

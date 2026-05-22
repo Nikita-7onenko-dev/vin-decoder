@@ -13,7 +13,7 @@ export default function AppRouter(): React.JSX.Element {
         <Routes>
           <Route path='/' element={<HomePage />}/>
           <Route path='/variables' element={<Variables />}/>
-          <Route path='/variables/:label' element={<VariableDetails />}/>
+          <Route path='/variables/:variableId' element={<VariableDetails />}/>
         </Routes>
       </main>
     </HashRouter>

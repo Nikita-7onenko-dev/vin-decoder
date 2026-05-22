@@ -1,12 +1,62 @@
-import type { Variable } from "@/api/variables/variables.types";
-import type { VinResult } from "@/api/vin/vin.types"
 import { NavLink } from "react-router-dom";
 
-type Props = {
-  fields: VinResult["fields"] | Variable[];
+ type TableField = {
+  id: string;
+  label: string;
+  value: React.ReactNode
 }
 
-export default function DataTable({fields}: Props) {
+type Props = {
+  fields: TableField[];
+  search?: string; 
+}
+
+// const highlightMatch = (target: string, search?: string): React.ReactNode => {
+//   if(!search) return target;
+  
+//   const index = target.toLowerCase().indexOf(search.toLowerCase());
+
+//   if(index === -1) return target;
+
+//   return (
+//     <>
+//     {target.slice(0, index)}
+//     <span style={{color:"#fff"}}>{target.slice(index, index + search.length)}</span>
+//     {target.slice(index + search.length)}
+//     </>
+//   )
+// }
+
+// const highlightMatch = (target: string, search: string): React.ReactNode => {
+
+//   if(!search) return target;
+
+//   const regExp = new RegExp(`(${search})`, "gi");
+//   const parts = target.split(regExp);
+
+//   return (
+//     <>
+//       {parts.map( (part, i) => (
+//         part.toLowerCase() === search.toLowerCase() ? 
+//           <span key={i} style={{color: "#fff"}}>{part}</span> :
+//           part
+//       ))}
+//     </>
+//   ) 
+// }
+
+const highlightMatch = (target: string, search: string): React.ReactNode => {
+  if(!search) return target;
+
+  const regExp = new RegExp(`(${search})`, "gi");
+
+  const parts = target.split(regExp);
+
+  return parts.map((part, i) => part.toLowerCase() === search ? 
+    <span key={i} style={{color: "#fff"}}>{part}</span> : part)
+}
+
+export default function DataTable({fields, search}: Props) {
   if(!fields || fields.length === 0) return null;
 
   return (
@@ -28,9 +78,9 @@ export default function DataTable({fields}: Props) {
           <tr key={field.id}>
             <td>
               <NavLink 
-                to={`/variables/${field.label}`}
+                to={`/variables/${field.id}`}
               >
-                {field.label}
+                {search ? highlightMatch(field.label, search) : field.label}
               </NavLink>
             </td>
             <td><div>{field.value}</div></td>

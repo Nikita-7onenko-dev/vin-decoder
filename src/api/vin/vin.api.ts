@@ -3,10 +3,10 @@ import { handleResponseError, normalizeError } from "../shared/http";
 import type { RawResponse, VinResult } from "./vin.types";
 import { normalizeVinResponse } from "./vin.utils";
 
-export async function fetchVin(vin: string): Promise<VinResult> {
+export async function fetchVin(vin: string, signal?: AbortSignal): Promise<VinResult> {
 
   try {
-    const response = await fetch(API_CONFIG.BASE_URL + `vehicles/decodevin/${vin}?format=json`);
+    const response = await fetch(API_CONFIG.BASE_URL + `vehicles/decodevin/${vin}?format=json`, {signal});
     if(!response.ok) {
       throw handleResponseError(response.status);
     }
@@ -16,11 +16,7 @@ export async function fetchVin(vin: string): Promise<VinResult> {
 
 
   } catch(err) {
+    if(err instanceof DOMException && err.name === "AbortError") throw err;
     throw normalizeError(err);
   }
 }
-
-// export async function getVin(vin: string): Promise<VinResult> {
-
-//   const raw = await fetchVin(vin);
-// }

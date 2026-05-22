@@ -1,18 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "vinHistory";
 
 export default function useVinHistory() {
 
   const [history, setHistory] = useState<string[]>(() => {
+    try{
       const storedHistory = localStorage.getItem(STORAGE_KEY);
       return storedHistory ? JSON.parse(storedHistory) : [];
-    });
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  }, [history])
 
   const addVin = (vin: string) => {
     setHistory(prevHistory => {
       const newHistory = [vin, ...prevHistory.filter(v => v !== vin)].slice(0, 3);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(newHistory));
+
       return newHistory;
     });
   };

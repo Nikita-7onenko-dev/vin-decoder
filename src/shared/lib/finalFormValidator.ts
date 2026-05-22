@@ -1,16 +1,16 @@
-import { formDataValidator } from "./formDataValidator";
-
+import type { ValidatorMap } from "./formDataValidator";
 
 export function finalFormValidation<T>(
-  formData: Record<keyof T, string>, 
+  formData: T, 
   errors: Record<keyof T, string>,
+  formDataValidator: ValidatorMap<T>
 ) {
 
   const newErrorData: typeof errors = {...errors}
 
   for(const key in formData) {
-    const value = formData[key as keyof T];
-    newErrorData[key as keyof T] = formDataValidator[key as string](value);
+    const value = formData[key];
+    newErrorData[key] = formDataValidator[key](value);
   }
 
   const hasErrors = Object.values(newErrorData).some(err => err);

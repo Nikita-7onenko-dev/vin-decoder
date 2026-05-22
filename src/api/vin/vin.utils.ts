@@ -1,6 +1,5 @@
 import { ERROR_MAP } from "./vin.error_map";
 import type { RawField, RawResponse, VinResult } from "./vin.types.ts";
-import { nanoid } from "nanoid";
 
 export function normalizeVinResponse(data: RawResponse): VinResult {
   const results = data.Results;
@@ -12,7 +11,7 @@ export function normalizeVinResponse(data: RawResponse): VinResult {
 
   // Собираем информационные поля в удобный формат
   const fields = results
-    .filter((field: RawField): field is RawField & { Value: string } => {
+    .filter((field): field is RawField & { Value: string } => {
       return (
         field.Value !== null &&
         field.Value !== "" &&
@@ -26,7 +25,7 @@ export function normalizeVinResponse(data: RawResponse): VinResult {
     .map((field) => ({
       label: field.Variable,
       value: field.Value,
-      id: nanoid(),
+      id: String(field.VariableId),
     }));
 
   // Парсим error codes

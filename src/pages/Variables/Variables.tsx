@@ -1,12 +1,14 @@
-import { useVariables } from "@/features/variables/api/useVariables";
+import { useVariablesFetch, useVariablesQuery } from "@/features/variables/api/useVariables";
 import VariablesHat from "@/features/variables/ui/VariablesHat";
 import DataTable from "@/shared/ui/DataTable";
+import { Pagination } from "@/shared/ui/Pagination";
 import { LoadingDots } from "@/widgets/LoadingDots";
 
 
 export default function Variables(): React.JSX.Element {
 
-  const { data, error, isLoading } = useVariables();
+  // const { data, error, isLoading } = useVariablesQuery();
+  const { data, error, isLoading } = useVariablesFetch();
   
   if(error) {
     return (
@@ -20,7 +22,7 @@ export default function Variables(): React.JSX.Element {
   return (
     <>
       <VariablesHat />
-      {isLoading ? <LoadingDots /> :  data && <DataTable fields={data} /> }
+      {isLoading ? <LoadingDots /> :  data && <Pagination fields={data} children={({fields, search}) => <DataTable fields={fields} search={search} />} /> }
     </>
   )
 }

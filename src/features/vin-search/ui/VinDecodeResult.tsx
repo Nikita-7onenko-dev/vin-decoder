@@ -1,9 +1,9 @@
 import type { VinResult } from "@/api/vin/vin.types"
-import DataTable from "../../../shared/ui/DataTable";
+import DataTable from "@/shared/ui/DataTable";
 import { LoadingDots } from "@/widgets/LoadingDots";
 
 type Props = {
-  data: VinResult | undefined;
+  data: VinResult | null;
   transportError: Error | null;
   isLoading: boolean;
 }

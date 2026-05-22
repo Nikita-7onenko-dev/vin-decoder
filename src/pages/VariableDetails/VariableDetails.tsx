@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 
 export default function VariableDetails(): React.JSX.Element {
 
-  const { label } = useParams();
+  const { variableId } = useParams();
   
   const { data: variables, isLoading, error } = useQuery({
     queryKey: ["variables"],
@@ -22,7 +22,7 @@ export default function VariableDetails(): React.JSX.Element {
     )
   }
 
-  const variable = variables?.find(variable => variable.label === label);
+  const variable = variables?.find(variable => variable.id === variableId);
   
   return (
     <section className="variable-details">  

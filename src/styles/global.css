@@ -40,6 +40,11 @@ button{
   }
 }
 
+button:disabled{
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .scroll-to-top{
   position: absolute;
   right: 100px;
@@ -173,4 +178,29 @@ header{
 
 .data-table th {
   color: var(--white);
+}
+
+
+#search{
+  width: 100%;
+}
+
+.main-pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-pagination__button{
+  flex-grow: 0;
+}
+
+.main-pagination__page-list{
+  display: flex;
+  gap: 10px;
+}
+
+@media screen and (max-width: 425px) {
+  .main-pagination__page-list{
+    display: none;
+  }
 }
