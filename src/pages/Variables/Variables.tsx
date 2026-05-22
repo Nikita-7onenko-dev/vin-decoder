@@ -1,4 +1,4 @@
-import { useVariablesFetch, useVariablesQuery } from "@/features/variables/api/useVariables";
+import { useVariablesFetch, /* useVariablesQuery */ } from "@/features/variables/api/useVariables";
 import VariablesHat from "@/features/variables/ui/VariablesHat";
 import DataTable from "@/shared/ui/DataTable";
 import { Pagination } from "@/shared/ui/Pagination";

@@ -4,8 +4,15 @@ Single Page Application для декодирования VIN-кодов с ис
 
 🔗 **Live demo:**
 [Открыть демо на GitHub Pages](https://nikita-7onenko-dev.github.io/vin-decoder/#/)
-
 ---
+
+## 🧪 Примеры VIN-кодов для проверки
+
+Скопируйте любой код и вставьте в инпут:
+
+- 1FTFW1CT5DFC10312  
+- WDDGF3BB4DF968608  
+- WVGEK9BP3CD010788
 
 ## 📌 Описание
 
