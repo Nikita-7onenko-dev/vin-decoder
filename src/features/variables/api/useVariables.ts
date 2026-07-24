@@ -16,10 +16,9 @@ const CACHE_KEY = "variables";
 const cacheRef: Map<string, Variable[]> = new Map();
 
 export function useVariablesFetch() {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<ApiError | null>(null);
   const [data, setData] = useState<Variable[] | null>(null);
-  console.log(`isLoading - ${isLoading}`)
 
   useEffect(() => {
     const controller = new AbortController();
@@ -34,9 +33,9 @@ export function useVariablesFetch() {
           return;
         }
       }
-      // setTimeout(() => setIsLoading(true), 0);
-      ;
+
       try{
+        setIsLoading(true)
         const data = await fetchAllVariables(controller.signal);
 
         setError(null);
@@ -48,14 +47,14 @@ export function useVariablesFetch() {
         setError(err as ApiError);
         setData(null);
       } finally {
-        if(!controller.signal.aborted)setIsLoading(false);
+        if(!controller.signal.aborted) setIsLoading(false);
       }
     }
 
     load()
 
     return () => controller.abort();
-  })
+  }, [])
 
   return { isLoading, error, data }
 }

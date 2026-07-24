@@ -1,6 +1,5 @@
-import { fetchAllVariables } from "@/api/variables/variables.api";
+import { useVariablesFetch } from "@/features/variables/api/useVariables";
 import { LoadingDots } from "@/widgets/LoadingDots";
-import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 
 
@@ -8,10 +7,7 @@ export default function VariableDetails(): React.JSX.Element {
 
   const { variableId } = useParams();
   
-  const { data: variables, isLoading, error } = useQuery({
-    queryKey: ["variables"],
-    queryFn: async () => fetchAllVariables(),
-  })
+  const { data: variables, isLoading, error } = useVariablesFetch()
   
   if(error) {
     return (
