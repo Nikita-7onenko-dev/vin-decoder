@@ -1,8 +1,6 @@
+@import url('styles/normalize.css');
 
-@import url('./styles/normalize.css');
+@import url('styles/variablesRoot.css');
 
-@import url('./styles/global.css');
+@import url('styles/global.css');
 
-@import url('./pages/HomePage/HomePage.css');
-
-@import url('./pages/Variables/Variables.css');

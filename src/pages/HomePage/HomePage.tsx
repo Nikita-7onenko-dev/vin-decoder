@@ -6,6 +6,8 @@ import VinForm from "@/features/vin-search/ui/VinForm";
 import VinHistory from "@/features/vin-search/ui/VinHistory";
 import { useState } from "react";
 
+import './HomePage.styles.css'
+
 export default function HomePage(): React.JSX.Element {
   
   const {validVin, setValidVin} = useVinContext();

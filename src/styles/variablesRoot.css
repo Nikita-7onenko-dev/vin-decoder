@@ -1,0 +1,8 @@
+:root{
+  --padding-inline: clamp(15px, 4vw, 100px);
+  --main-color: #9ca3af;
+  --anchor-color: #77a2ec;
+  --white: #fff;
+  --error-color: #ef444462;
+  --warning-color: #f59e0b62;
+}

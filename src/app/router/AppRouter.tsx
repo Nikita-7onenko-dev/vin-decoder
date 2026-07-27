@@ -1,6 +1,6 @@
 import { HashRouter, Route, Routes } from "react-router-dom"
 import HomePage from "@/pages/HomePage/HomePage"
-import Header from "@/widgets/Header"
+import Header from "@/widgets/Header/Header"
 import Variables from "@/pages/Variables/Variables"
 import VariableDetails from "@/pages/VariableDetails/VariableDetails"
 

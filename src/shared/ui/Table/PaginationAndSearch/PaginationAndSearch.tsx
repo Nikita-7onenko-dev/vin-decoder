@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-type TableField = {
-  id: string;
-  label: string;
-  value: React.ReactNode;  
-}
+import './PaginationAndSearch.styles.css'
+
+import type { TableField } from "../Table.types";
 
 type Props = {
   fields: TableField[];
-  children: (props : {fields: TableField[]; search: string;}) => React.ReactNode; 
+  children: (props : {fields: TableField[], search: string} ) => React.ReactNode; 
 }
 
 const LIMIT = 20;

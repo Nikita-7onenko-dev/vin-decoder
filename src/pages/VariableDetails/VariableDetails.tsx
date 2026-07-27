@@ -1,6 +1,8 @@
 import { useVariablesFetch } from "@/features/variables/api/useVariables";
-import { LoadingDots } from "@/widgets/LoadingDots";
+import { LoadingDots } from "@/widgets/LoadingDots/LoadingDots";
 import { Link, useParams } from "react-router-dom";
+
+import './VariableDetails.styles.css'
 
 
 export default function VariableDetails(): React.JSX.Element {

@@ -1,0 +1,37 @@
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.data-table__col--1 {
+  width: 35%;
+}
+
+.data-table th,
+.data-table td {
+  padding: 10px ;
+  text-align: left;
+  border-bottom: 1px solid var(--main-color);
+}
+
+.data-table td:nth-child(2) {
+  overflow-y: auto;
+}
+
+.data-table td > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 180px;
+  width: fit-content;
+
+  ul li{
+    list-style: disc;
+    margin-left: 20px;
+  }
+}
+
+.data-table th {
+  color: var(--white);
+}

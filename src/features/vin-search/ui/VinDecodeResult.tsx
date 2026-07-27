@@ -1,6 +1,6 @@
 import type { VinResult } from "@/api/vin/vin.types"
-import DataTable from "@/shared/ui/DataTable";
-import { LoadingDots } from "@/widgets/LoadingDots";
+import DataTable from "@/shared/ui/Table/DataTable/DataTable";
+import { LoadingDots } from "@/widgets/LoadingDots/LoadingDots";
 
 type Props = {
   data: VinResult | null;

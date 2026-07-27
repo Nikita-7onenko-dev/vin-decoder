@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import './LoadingDots.styles.css'
+
 export function LoadingDots() {
 
   const [dots, setDots] = useState<string>('');
@@ -14,6 +16,6 @@ export function LoadingDots() {
   }, []);
 
   return (
-    <span style={{fontSize: '20px', marginInline: "auto"}}>Loading{dots}</span>
+    <span className="loading-dots">Loading{dots}</span>
   )
 }

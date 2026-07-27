@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
-import { highlightMatch } from "../lib/highlightMatch";
+import { highlightMatch } from "@/shared/lib/highlightMatch";
 
- type TableField = {
-  id: string;
-  label: string;
-  value: React.ReactNode
-}
+import './DataTable.styles.css'
+
+import type { TableField } from "../Table.types";
+
+
 
 type Props = {
   fields: TableField[];

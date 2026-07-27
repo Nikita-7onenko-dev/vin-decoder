@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import './Header.styles.css'
 
 
 export default function Header(): React.JSX.Element {
