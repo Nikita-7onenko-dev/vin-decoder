@@ -1,3 +1,6 @@
+import type { StatusDetail } from "@/shared/ui/StatusMessage/StatusMessage.types";
+import type { TableField } from "@/shared/ui/Table/Table.types";
+
 export type RawField = {
   Value: string | null;
   ValueId: string | null;
@@ -14,20 +17,7 @@ export type RawResponse = {
 
 export type VinResult = {
   message: string;
-  
-  fields: {
-    label: string;
-    value: string;
-    id: string;
-  }[];
-
-  errors: {
-    code: number;
-    message: string;
-  }[];
-
-  warnings: {
-    code: number;
-    message: string;
-  }[];
+  fields: TableField[];
+  errors: StatusDetail[];
+  warnings: StatusDetail[];
 };

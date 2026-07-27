@@ -2,6 +2,7 @@ import type { VinResult } from "@/entities/vin/api/vin.types"
 import type { ApiError } from "@/shared/errors/ApiError";
 import DataTable from "@/shared/ui/Table/DataTable/DataTable";
 import { LoadingDots } from "@/shared/ui/LoadingDots/LoadingDots";
+import { StatusMessage } from "@/shared/ui/StatusMessage/StatusMessage";
 
 type Props = {
   data: VinResult | null;
@@ -16,12 +17,7 @@ export default function VinDecodeResult({data, requestError, isLoading}: Props) 
   }
 
   if (requestError) {
-    return (
-      <div className="global__message-container global__message-container--error">
-        <h2>Error: Failed to fetch VIN data</h2>
-        <p>{requestError.message}</p>
-      </div>
-    );
+    return <StatusMessage title="Error: Failed to fetch VIN data" variant="error" details={requestError.message} />
   }
 
   if (!data) {
@@ -33,32 +29,13 @@ export default function VinDecodeResult({data, requestError, isLoading}: Props) 
   let warnings = null;
 
   if (isInvalidVin) {
-    return (
-      <div className="global__message-container global__message-container--error">
-        <h2>Error: Invalid VIN</h2>
-        <ul>
-          {data.errors.map(err => (
-            <li key={err.code}>{err.message}</li>
-          ))}
-        </ul>
-      </div>
-    );
+    return <StatusMessage title="Error: Invalid VIN" variant="error" details={data.errors} />
   }
 
   if(hasWarnings) {
-    warnings = (
-      <div className="global__message-container global__message-container--warning">
-        <h2>Warnings</h2>
-        <ul>
-          {data.warnings.map(warning => (
-            <li key={warning.code}>{warning.message}</li>
-          ))}
-        </ul>
-      </div>
-    );
+    warnings = <StatusMessage title="Warnings" variant="warning" details={data.warnings} />
   }
   
-
   return (
     <>
       <p>{data.message}</p>

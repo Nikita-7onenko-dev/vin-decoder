@@ -1,6 +1,7 @@
 import { useVariables } from "@/features/variables/api/useVariables";
 import { LoadingDots } from "@/shared/ui/LoadingDots/LoadingDots";
 import { Link, useParams } from "react-router-dom";
+import { StatusMessage } from "@/shared/ui/StatusMessage/StatusMessage";
 
 import './VariableDetails.styles.css'
 
@@ -12,12 +13,7 @@ export default function VariableDetails(): React.JSX.Element {
   const { data: variables, isLoading, error } = useVariables()
   
   if(error) {
-    return (
-      <div className="global__message-container global__message-container--error">
-        Error fetching variables
-        <p>{error.message}</p>
-      </div>
-    )
+    return <StatusMessage title="Error fetching variables" variant="error" details={error.message} />
   }
 
   const variable = variables?.find(variable => variable.id === variableId);

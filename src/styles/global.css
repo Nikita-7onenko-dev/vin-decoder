@@ -55,27 +55,3 @@ a{
   color: var(--white);
   text-decoration: underline 2px solid var(--white);
 }
-
-/* Error/Warning Container */
-.global__message-container {
-  color: var(--white);
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  p, ul>li{
-    margin: 0;
-    font-size: clamp(14px, 1.8vw, 17px);
-    margin-bottom: 10px;
-  }
-}
-
-.global__message-container--error {
-  background-color: var(--error-color);
-}
-
-.global__message-container--warning {
-  background-color: var(--warning-color);
-}

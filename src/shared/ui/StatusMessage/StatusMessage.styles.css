@@ -1,0 +1,22 @@
+.message-container {
+  color: var(--white);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  p, ul>li{
+    margin: 0;
+    font-size: clamp(14px, 1.8vw, 17px);
+    margin-bottom: 10px;
+  }
+}
+
+.message-container--error {
+  background-color: var(--error-color);
+}
+
+.message-container--warning {
+  background-color: var(--warning-color);
+}
