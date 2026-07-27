@@ -1,12 +1,12 @@
-import { fetchAllVariables } from "@/api/variables/variables.api";
-import type { Variable } from "@/api/variables/variables.types";
+import { fetchAllVariables } from "@/entities/variables";
+import type { Variable } from "@/entities/variables";
 import type { ApiError } from "@/shared/errors/ApiError";
 import { useEffect, useState } from "react";
 
 const CACHE_KEY = "variables";
 const cacheRef: Map<string, Variable[]> = new Map();
 
-export function useVariablesFetch() {
+export function useVariables() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<ApiError | null>(null);
   const [data, setData] = useState<Variable[] | null>(null);

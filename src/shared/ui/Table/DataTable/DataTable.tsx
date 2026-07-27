@@ -5,8 +5,6 @@ import './DataTable.styles.css'
 
 import type { TableField } from "../Table.types";
 
-
-
 type Props = {
   fields: TableField[];
   search?: string; 

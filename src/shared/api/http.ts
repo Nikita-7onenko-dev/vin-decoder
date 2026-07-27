@@ -1,4 +1,4 @@
-import { ApiError } from "../../shared/errors/ApiError";
+import { ApiError } from "../errors/ApiError";
 
 export function handleResponseError(status: number): ApiError {
   if(status >= 400 && status < 500) {

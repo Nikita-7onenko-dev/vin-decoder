@@ -1,4 +1,3 @@
-
 export type RawField = {
   Value: string | null;
   ValueId: string | null;
@@ -14,7 +13,6 @@ export type RawResponse = {
 }
 
 export type VinResult = {
-  vin: string;
   message: string;
   
   fields: {
@@ -32,5 +30,4 @@ export type VinResult = {
     code: number;
     message: string;
   }[];
-
 };

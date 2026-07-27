@@ -1,9 +1,11 @@
 type Status = "success" | "warning" | "error";
 
-export const ERROR_MAP: Record<number, {
+type Description = {
   status: Status;
   message: string;
-}> = {
+}
+
+export const ERROR_MAP: Record<number, Description> = {
   1: {
     status: "error",
     message: "Check digit (9th character) is incorrect. Please verify the VIN.",

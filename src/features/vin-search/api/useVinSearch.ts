@@ -1,11 +1,11 @@
-import { fetchVin } from "@/api/vin/vin.api";
-import type { VinResult } from "@/api/vin/vin.types";
+import { fetchVin } from "@/entities/vin";
+import type { VinResult } from "@/entities/vin/api/vin.types";
 import type { ApiError } from "@/shared/errors/ApiError";
 import { useEffect, useState } from "react";
 
 const cacheRef: Map<string, VinResult> = new Map()
 
-export function useVinFetch(vin: string)  {
+export function useVinSearch(vin: string)  {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<ApiError | null>(null);
   const [data, setData] = useState<VinResult | null>(null);

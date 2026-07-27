@@ -1,5 +1,6 @@
-import { API_CONFIG } from "../shared/api.config";
-import { handleResponseError, normalizeError } from "../shared/http";
+import { handleResponseError, normalizeError } from "@/shared/api/http";
+import { API_CONFIG } from "@/shared/api/api.config";
+
 import type { Variable, VariablesResponse } from "./variables.types";
 import normalizeVariablesList from "./variables.utils";
 

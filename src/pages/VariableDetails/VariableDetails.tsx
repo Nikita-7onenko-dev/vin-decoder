@@ -1,5 +1,5 @@
-import { useVariablesFetch } from "@/features/variables/api/useVariables";
-import { LoadingDots } from "@/widgets/LoadingDots/LoadingDots";
+import { useVariables } from "@/features/variables/api/useVariables";
+import { LoadingDots } from "@/shared/ui/LoadingDots/LoadingDots";
 import { Link, useParams } from "react-router-dom";
 
 import './VariableDetails.styles.css'
@@ -9,7 +9,7 @@ export default function VariableDetails(): React.JSX.Element {
 
   const { variableId } = useParams();
   
-  const { data: variables, isLoading, error } = useVariablesFetch()
+  const { data: variables, isLoading, error } = useVariables()
   
   if(error) {
     return (

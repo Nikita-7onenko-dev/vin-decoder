@@ -1,5 +1,3 @@
-
-
 export type VariablesResponse = {
   Count: number;
   Message: string;

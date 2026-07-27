@@ -1,24 +1,25 @@
-import type { VinResult } from "@/api/vin/vin.types"
+import type { VinResult } from "@/entities/vin/api/vin.types"
+import type { ApiError } from "@/shared/errors/ApiError";
 import DataTable from "@/shared/ui/Table/DataTable/DataTable";
-import { LoadingDots } from "@/widgets/LoadingDots/LoadingDots";
+import { LoadingDots } from "@/shared/ui/LoadingDots/LoadingDots";
 
 type Props = {
   data: VinResult | null;
-  transportError: Error | null;
+  requestError: ApiError | null;
   isLoading: boolean;
 }
 
-export default function VinDecodeResult({data, transportError, isLoading}: Props) {
+export default function VinDecodeResult({data, requestError, isLoading}: Props) {
 
    if (isLoading) {
     return <LoadingDots />;
   }
 
-  if (transportError) {
+  if (requestError) {
     return (
       <div className="global__message-container global__message-container--error">
         <h2>Error: Failed to fetch VIN data</h2>
-        <p>{transportError.message}</p>
+        <p>{requestError.message}</p>
       </div>
     );
   }
@@ -37,7 +38,7 @@ export default function VinDecodeResult({data, transportError, isLoading}: Props
         <h2>Error: Invalid VIN</h2>
         <ul>
           {data.errors.map(err => (
-            <li key={err.message}>{err.message}</li>
+            <li key={err.code}>{err.message}</li>
           ))}
         </ul>
       </div>
@@ -50,7 +51,7 @@ export default function VinDecodeResult({data, transportError, isLoading}: Props
         <h2>Warnings</h2>
         <ul>
           {data.warnings.map(warning => (
-            <li key={warning.message}>{warning.message}</li>
+            <li key={warning.code}>{warning.message}</li>
           ))}
         </ul>
       </div>

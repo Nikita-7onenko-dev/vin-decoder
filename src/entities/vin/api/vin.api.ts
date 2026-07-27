@@ -1,5 +1,5 @@
-import { API_CONFIG } from "../shared/api.config";
-import { handleResponseError, normalizeError } from "../shared/http";
+import { API_CONFIG } from "../../../shared/api/api.config";
+import { handleResponseError, normalizeError } from "../../../shared/api/http";
 import type { RawResponse, VinResult } from "./vin.types";
 import { normalizeVinResponse } from "./vin.utils";
 

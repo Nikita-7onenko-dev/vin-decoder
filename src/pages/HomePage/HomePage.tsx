@@ -1,5 +1,5 @@
 import { useVinContext } from "@/app/providers/VinContextProvider";
-import { useVinFetch } from "@/features/vin-search/api/useVinQuery";
+import { useVinSearch } from "@/features/vin-search/api/useVinSearch";
 import useVinHistory from "@/features/vin-search/model/useVinHistory";
 import VinDecodeResult from "@/features/vin-search/ui/VinDecodeResult";
 import VinForm from "@/features/vin-search/ui/VinForm";
@@ -18,7 +18,7 @@ export default function HomePage(): React.JSX.Element {
     setAutoFill(vin);
   }
 
-  const { data, error, isLoading } = useVinFetch(validVin);
+  const { data, error, isLoading } = useVinSearch(validVin);
 
   const { history, addVin, clearHistory } = useVinHistory();
 
@@ -26,7 +26,7 @@ export default function HomePage(): React.JSX.Element {
     <>
       <VinForm setValidVin={setValidVin} addVinToHistory={addVin} autoFill={autoFill} setAutoFill={setAutoFill}/>
       <VinHistory history={history} onSelectVin={onSelectVin} currentVin={validVin} clearHistory={clearHistory}/>
-      <VinDecodeResult data={data} transportError={error} isLoading={isLoading}/>
+      <VinDecodeResult data={data} requestError={error} isLoading={isLoading}/>
     </>
   )
 }

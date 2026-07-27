@@ -1,15 +1,15 @@
-import { useVariablesFetch } from "@/features/variables/api/useVariables";
+import { useVariables } from "@/features/variables/api/useVariables";
 import VariablesHat from "@/features/variables/ui/VariablesHat";
 import DataTable from "@/shared/ui/Table/DataTable/DataTable";
 import { Pagination } from "@/shared/ui/Table/PaginationAndSearch/PaginationAndSearch";
-import { LoadingDots } from "@/widgets/LoadingDots/LoadingDots";
+import { LoadingDots } from "@/shared/ui/LoadingDots/LoadingDots";
 
 import './Variables.styles.css'
 
 
 export default function Variables(): React.JSX.Element {
 
-  const { data, error, isLoading } = useVariablesFetch();
+  const { data, error, isLoading } = useVariables();
   
   if(error) {
     return (

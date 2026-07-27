@@ -1,4 +1,4 @@
-import { ERROR_MAP } from "./vin.error_map";
+import { ERROR_MAP } from "./vin.error_map.ts";
 import type { RawField, RawResponse, VinResult } from "./vin.types.ts";
 
 export function normalizeVinResponse(data: RawResponse): VinResult {
@@ -55,7 +55,6 @@ export function normalizeVinResponse(data: RawResponse): VinResult {
 
   return {
     message: data.Message,
-    vin: data.SearchCriteria,
     fields,
     errors,
     warnings,
