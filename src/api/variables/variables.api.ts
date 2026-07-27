@@ -21,7 +21,3 @@ export async function fetchAllVariables(signal?: AbortSignal): Promise<Variable[
     throw normalizeError(err);
   }
 }
-
-// export async function getVariablesList(): Promise<Variable[]> {
-//   const variables = await fetchAllVariables();
-// }

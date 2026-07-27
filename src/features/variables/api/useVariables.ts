@@ -1,16 +1,7 @@
 import { fetchAllVariables } from "@/api/variables/variables.api";
 import type { Variable } from "@/api/variables/variables.types";
 import type { ApiError } from "@/shared/errors/ApiError";
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-
-export function useVariablesQuery() {
-  return useQuery<Variable[], ApiError>({
-    queryKey: ["variables"],
-    queryFn: async ({signal}) => fetchAllVariables(signal),
-    staleTime: Infinity,
-  });
-}
 
 const CACHE_KEY = "variables";
 const cacheRef: Map<string, Variable[]> = new Map();

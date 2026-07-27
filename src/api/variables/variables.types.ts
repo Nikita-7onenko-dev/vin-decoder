@@ -18,5 +18,5 @@ export type RawVariable = {
 export type Variable = {
   id: string;
   label: string;
-  value: React.ReactNode | React.ReactNode[];
+  value: React.ReactNode;
 }
