@@ -1,0 +1,33 @@
+#search{
+  width: 100%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination__button{
+  flex-grow: 0;
+}
+
+.pagination__page-list{
+  display: flex;
+  gap: 10px;
+}
+
+.pagination__page-counter{
+  display: none;
+}
+
+@media screen and (max-width: 420px) {
+  .pagination__page-list{
+    display: none;
+  }
+
+  .pagination__page-counter{
+    display: initial;
+  }
+
+}
