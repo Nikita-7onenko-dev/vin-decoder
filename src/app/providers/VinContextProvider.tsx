@@ -3,6 +3,8 @@ import { createContext, useContext, useState } from "react";
 type VinContextType = {
   validVin: string;
   setValidVin: React.Dispatch<React.SetStateAction<string>>;
+  autoFill: string;
+  setAutoFill: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const VinContext = createContext<VinContextType | null>(null);
@@ -15,10 +17,11 @@ export function useVinContext(): VinContextType {
 }
 
 export function VinContextProvider({children}: {children: React.ReactNode}) {
+  const [autoFill, setAutoFill] = useState<string>("");
   const [validVin, setValidVin] = useState<string>("");
 
   return (
-    <VinContext.Provider value={{validVin, setValidVin}} >
+    <VinContext.Provider value={{validVin, setValidVin, autoFill, setAutoFill}} >
       {children}
     </VinContext.Provider>
   )

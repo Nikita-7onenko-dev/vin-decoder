@@ -17,10 +17,11 @@ export default function useVinHistory() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
   }, [history])
 
-  const addVin = (vin: string) => {
+  const addVinToHistory = (vin: string) => {
     setHistory(prevHistory => {
-      const newHistory = [vin, ...prevHistory.filter(v => v !== vin)].slice(0, 3);
+      if(prevHistory[0] === vin) return prevHistory;
 
+      const newHistory = [vin, ...prevHistory.filter(v => v !== vin)].slice(0, 3);
       return newHistory;
     });
   };
@@ -30,5 +31,5 @@ export default function useVinHistory() {
     setHistory([]);
   }
   
-  return { history, addVin, clearHistory };
+  return { history, addVinToHistory, clearHistory };
 }

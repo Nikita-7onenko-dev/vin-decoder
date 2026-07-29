@@ -15,13 +15,12 @@ const initFormDataFields = {
 }
 
 type Props = {
-  setValidVin: React.Dispatch<React.SetStateAction<string>>;
-  addVinToHistory: (vin: string) => void;
+  onDecodeVin: (vin: string) => void;
   autoFill: string;
   setAutoFill: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function VinForm({setValidVin, addVinToHistory, autoFill, setAutoFill}: Props): React.JSX.Element {
+export default function VinForm({onDecodeVin, autoFill, setAutoFill}: Props): React.JSX.Element {
 
   const [formData, setFormData] = useState<FormDataType>(initFormDataFields);
   const [errors, setErrors] = useState<FormDataType>(initFormDataFields);
@@ -65,8 +64,7 @@ export default function VinForm({setValidVin, addVinToHistory, autoFill, setAuto
       setErrors(newErrorData);
       return;
     }
-    setValidVin(formData.vin);
-    addVinToHistory(formData.vin);
+    onDecodeVin(formData.vin);
   }
 
   const blurHandler = (e: React.FocusEvent<HTMLInputElement>) => {

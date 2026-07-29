@@ -36,7 +36,7 @@ button:disabled{
   transition: color .3s ease, border-color .3s ease;
   flex-grow: 1;
 
-  &:hover{
+  &:hover:not(:disabled){
     color: var(--white);
     border-color: var(--white);
   }
