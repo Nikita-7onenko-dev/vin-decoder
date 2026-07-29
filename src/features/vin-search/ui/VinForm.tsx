@@ -40,25 +40,25 @@ export default function VinForm({onDecodeVin, autoFill, setAutoFill}: Props): Re
   }, [autoFill])
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const {name: field, value: _value} = e.target;
-      const upperCaseVal = _value.toUpperCase();
+    const {name: field, value: _value} = e.target;
+    const upperCaseVal = _value.toUpperCase();
 
-      setFormData(prev => ({
-        ...prev,
-        [field as keyof FormDataType]: upperCaseVal
-      }));
+    setFormData(prev => ({
+      ...prev,
+      [field as keyof FormDataType]: upperCaseVal
+    }));
 
-      setErrors(prev => ({
-        ...prev,
-        [field as keyof FormDataType]: formDataValidator[field as keyof FormDataType](upperCaseVal)
-      }));
+    setErrors(prev => ({
+      ...prev,
+      [field as keyof FormDataType]: formDataValidator[field as keyof FormDataType](upperCaseVal)
+    }));
 
-      setAutoFill("");
+    setAutoFill("");
   }
 
   const submitHandler = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const {hasErrors, newErrorData} = finalFormValidation(formData, errors, formDataValidator);
+    const {hasErrors, newErrorData} = finalFormValidation(formData, formDataValidator);
     
     if(hasErrors) {
       setErrors(newErrorData);
@@ -71,10 +71,13 @@ export default function VinForm({onDecodeVin, autoFill, setAutoFill}: Props): Re
     const {name, value} = e.target;
     if(value) return;
 
-    setErrors(err => ({
-      ...err,
-      [name]: ""
-    }))
+    setErrors(err => {
+      if(err[name as keyof FormDataType] === "") return err;
+      return {
+        ...err,
+        [name]: ""
+      }
+    })
   }
 
   const formInputs = Object.keys(formData).map(field => (
@@ -104,11 +107,10 @@ export default function VinForm({onDecodeVin, autoFill, setAutoFill}: Props): Re
       <button 
         className="main-button"
         type="submit"
-        disabled={finalFormValidation(formData, errors, formDataValidator).hasErrors}
+        disabled={formData.vin === "" || Boolean(errors.vin)}
       >
         Decode
       </button>
     </form>
   )
-
 }

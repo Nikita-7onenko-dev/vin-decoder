@@ -2,11 +2,10 @@ import type { ValidatorMap } from "./formDataValidator";
 
 export function finalFormValidation<T>(
   formData: T, 
-  errors: Record<keyof T, string>,
   formDataValidator: ValidatorMap<T>
 ) {
 
-  const newErrorData: typeof errors = {...errors}
+  const newErrorData = {} as Record<keyof T, string>
 
   for(const key in formData) {
     const value = formData[key];

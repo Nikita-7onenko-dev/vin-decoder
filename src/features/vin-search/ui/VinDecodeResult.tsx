@@ -1,18 +1,17 @@
-import type { VinResult } from "@/entities/vin/api/vin.types"
-import type { ApiError } from "@/shared/errors/ApiError";
 import DataTable from "@/shared/ui/Table/DataTable/DataTable";
 import { LoadingDots } from "@/shared/ui/LoadingDots/LoadingDots";
 import { StatusMessage } from "@/shared/ui/StatusMessage/StatusMessage";
+import { useVinSearch } from "../api/useVinSearch";
 
 type Props = {
-  data: VinResult | null;
-  requestError: ApiError | null;
-  isLoading: boolean;
+  validVin: string
 }
 
-export default function VinDecodeResult({data, requestError, isLoading}: Props) {
+export default function VinDecodeResult({validVin}: Props) {
 
-   if (isLoading) {
+  const { data, error: requestError, isLoading } = useVinSearch(validVin);
+  
+  if (isLoading) {
     return <LoadingDots />;
   }
 

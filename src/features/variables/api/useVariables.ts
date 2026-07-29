@@ -26,7 +26,6 @@ export function useVariables() {
       }
 
       try{
-        // setIsLoading(true)
         const data = await fetchAllVariables(controller.signal);
 
         setError(null);
