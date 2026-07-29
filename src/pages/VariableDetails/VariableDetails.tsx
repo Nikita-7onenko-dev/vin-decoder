@@ -1,9 +1,10 @@
 import { useVariables } from "@/features/variables/api/useVariables";
 import { LoadingDots } from "@/shared/ui/LoadingDots/LoadingDots";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { StatusMessage } from "@/shared/ui/StatusMessage/StatusMessage";
 
 import './VariableDetails.styles.css'
+import { GoBackButton } from "@/shared/ui/GoBackButton/GoBackButton";
 
 
 export default function VariableDetails(): React.JSX.Element {
@@ -16,45 +17,37 @@ export default function VariableDetails(): React.JSX.Element {
     return <StatusMessage title="Error fetching variables" variant="error" details={error.message} />
   }
 
-  const variable = variables?.find(variable => variable.id === variableId);
-  
+  if(isLoading) return (
+    <section className="variable-details">  
+      <div className="variable-details__header">
+        <GoBackButton />
+        <LoadingDots />
+      </div>
+    </section>
+  )
+
+  const variable = variables?.find(({id}) => id === variableId);
+
+  if(!variable) return (
+    <section className="variable-details">  
+      <div className="variable-details__header">
+        <GoBackButton />
+        <h2>Property details</h2>
+      </div>
+        <StatusMessage title="404 Property not found" variant="error" details={`No property was found for ID "${variableId}". Please check the link and try again`}/>
+    </section>
+  )
+
   return (
     <section className="variable-details">  
       <div className="variable-details__header">
-        <Link to="/variables">
-          <svg
-            viewBox="0 0 24 24"
-            width="40"
-            height="40"
-            fill="none"
-          >
-            <rect
-              x="3"
-              y="3"
-              width="18"
-              height="18"
-              rx="3"
-              stroke="currentColor"
-              strokeWidth="1"
-            />
-            <path
-              d="M13 9L10 12L13 15"
-              stroke="currentColor"
-              strokeWidth="1"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </Link>
-        <h2>{isLoading ? <LoadingDots /> : variable?.label || "Property Details"}</h2>
+        <GoBackButton />
+        <h2>{variable.label}</h2>
       </div>
-      {variable ? (
-          <div className="variable-details__description">
-            <strong>Description:</strong> {variable.value}
-          </div>
-      ) : (
-        !isLoading && <p>Property not found</p>
-      )}
+      <div className="variable-details__description">
+        <strong>Description:</strong> 
+        {variable.value}
+      </div>
     </section>
   )
 }

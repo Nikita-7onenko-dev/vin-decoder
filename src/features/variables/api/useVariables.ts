@@ -7,7 +7,7 @@ const CACHE_KEY = "variables";
 const cacheRef: Map<string, Variable[]> = new Map();
 
 export function useVariables() {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<ApiError | null>(null);
   const [data, setData] = useState<Variable[] | null>(null);
 
@@ -26,7 +26,7 @@ export function useVariables() {
       }
 
       try{
-        setIsLoading(true)
+        // setIsLoading(true)
         const data = await fetchAllVariables(controller.signal);
 
         setError(null);
