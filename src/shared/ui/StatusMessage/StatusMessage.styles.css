@@ -11,6 +11,11 @@
     font-size: clamp(14px, 1.8vw, 17px);
     margin-bottom: 10px;
   }
+  div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .message-container--error {

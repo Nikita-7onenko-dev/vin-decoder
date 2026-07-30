@@ -5,6 +5,10 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+
+  button{
+    flex-grow: 1;
+  }
 }
 
 .vin-form__label{
@@ -69,8 +73,12 @@
   }
 }
 
-/* @media screen and (max-width: 490px) {
-  .vin-history {
-    align-items: normal;
-  }
-} */
+.vin-history__item{
+  color: #9ca3af;
+}
+
+
+.vin-history__item--active{
+  font-weight: 600;
+  color: var(--white);
+}

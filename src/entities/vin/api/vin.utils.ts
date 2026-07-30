@@ -17,6 +17,7 @@ export function normalizeVinResponse(data: RawResponse): VinResult {
         field.Value !== "" &&
         field.Variable !== "Error Code" &&
         field.Variable !== "Error Text" &&
+        field.Value !== "Not Applicable" &&
         field.Variable !== "Suggested VIN" &&
         field.Variable !== "Possible Values" &&
         field.Variable !== "Additional Error Text"

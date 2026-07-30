@@ -21,10 +21,7 @@ export default function VinHistory({history, onSelectVin, currentVin, clearHisto
               <li key={vin} >
                 [<button 
                   onClick={() => onSelectVin(vin)}
-                  style={{
-                    fontWeight: vin === currentVin ? 600 : "normal",
-                    color: vin === currentVin ? "#fff" : "#9ca3af",
-                  }}  
+                  className={vin === currentVin ? "vin-history__item vin-history__item--active" : "vin-history__item"}
                 >
                   {vin}
                 </button>]

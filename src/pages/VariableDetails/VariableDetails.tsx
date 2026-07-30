@@ -1,10 +1,10 @@
 import { useVariables } from "@/features/variables/api/useVariables";
-import { LoadingDots } from "@/shared/ui/LoadingDots/LoadingDots";
+import  LoadingDots  from "@/shared/ui/LoadingDots/LoadingDots";
 import { useParams } from "react-router-dom";
-import { StatusMessage } from "@/shared/ui/StatusMessage/StatusMessage";
+import  StatusMessage  from "@/shared/ui/StatusMessage/StatusMessage";
 
 import './VariableDetails.styles.css'
-import { GoBackButton } from "@/shared/ui/GoBackButton/GoBackButton";
+import  GoBackButton  from "@/shared/ui/GoBackButton/GoBackButton";
 
 
 export default function VariableDetails(): React.JSX.Element {

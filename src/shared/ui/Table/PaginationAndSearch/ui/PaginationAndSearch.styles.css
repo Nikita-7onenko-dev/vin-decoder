@@ -8,10 +8,6 @@
   align-items: center;
 }
 
-.pagination__button{
-  flex-grow: 0;
-}
-
 .pagination__page-list{
   display: flex;
   gap: 10px;

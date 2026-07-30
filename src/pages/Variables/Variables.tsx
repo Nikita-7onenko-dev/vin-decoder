@@ -1,9 +1,9 @@
 import { useVariables } from "@/features/variables/api/useVariables";
 import VariablesHat from "@/features/variables/ui/VariablesHat";
 import DataTable from "@/shared/ui/Table/DataTable/DataTable";
-import { PaginationAndSearch } from "@/shared/ui/Table/PaginationAndSearch/ui/PaginationAndSearch";
-import { LoadingDots } from "@/shared/ui/LoadingDots/LoadingDots";
-import { StatusMessage } from "@/shared/ui/StatusMessage/StatusMessage";
+import  PaginationAndSearch  from "@/shared/ui/Table/PaginationAndSearch/ui/PaginationAndSearch";
+import  LoadingDots  from "@/shared/ui/LoadingDots/LoadingDots";
+import  StatusMessage  from "@/shared/ui/StatusMessage/StatusMessage";
 
 import './Variables.styles.css'
 

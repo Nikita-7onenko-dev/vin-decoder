@@ -17,7 +17,7 @@ const initFormDataFields = {
 type Props = {
   onDecodeVin: (vin: string) => void;
   autoFill: string;
-  setAutoFill: React.Dispatch<React.SetStateAction<string>>
+  setAutoFill: (vin: string) => void;
 }
 
 export default function VinForm({onDecodeVin, autoFill, setAutoFill}: Props): React.JSX.Element {

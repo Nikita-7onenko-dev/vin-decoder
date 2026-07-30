@@ -9,7 +9,7 @@ type Props = {
   children: (props : {fields: TableField[], search: string} ) => React.ReactNode; 
 }
 
-export function PaginationAndSearch({fields, children}: Props) {
+export default function PaginationAndSearch({fields, children}: Props) {
   const [value, setValue] = useState<string>("");
   const searchValue = value.toLowerCase();
   
@@ -43,7 +43,7 @@ export function PaginationAndSearch({fields, children}: Props) {
 
       <div className="pagination">
         <button
-          className="main-button pagination__button"
+          className="main-button"
           onClick={() => setPage(String(currentPage - 1))}
           disabled={currentPage === 1}
         >
@@ -67,7 +67,7 @@ export function PaginationAndSearch({fields, children}: Props) {
         <p className="pagination__page-counter" >{currentPage + " / " + totalPages}</p>
 
         <button
-          className="main-button pagination__button"
+          className="main-button"
           onClick={() => setPage(String(currentPage + 1))}
           disabled={currentPage === totalPages}
         >

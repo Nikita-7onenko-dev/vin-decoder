@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import './LoadingDots.styles.css'
 
-export function LoadingDots() {
+export default function LoadingDots() {
 
   const [dots, setDots] = useState<string>('');
 

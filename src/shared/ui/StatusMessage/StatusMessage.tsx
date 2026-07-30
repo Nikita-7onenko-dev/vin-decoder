@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './StatusMessage.styles.css'
 import type { StatusDetail } from './StatusMessage.types';
 
@@ -7,7 +8,11 @@ type Props = {
   details: string | StatusDetail[];
 }
 
-export function StatusMessage({variant, title, details}: Props) {
+export default function StatusMessage({variant="error", title, details}: Props) {
+
+  const [close, setClose] = useState(false);
+
+  if(close) return null;
 
   const isMultiply = Array.isArray(details)
   let content: React.ReactNode;
@@ -26,7 +31,13 @@ export function StatusMessage({variant, title, details}: Props) {
 
    return (
       <div className={`message-container message-container--${variant}`}>
-        <h2>{title}</h2>
+        <div>
+          <h2>{title}</h2>
+          <button 
+            className='main-button'
+            onClick={() => setClose(true)}  
+          >X</button>
+        </div>
         {content}
       </div>
     );
