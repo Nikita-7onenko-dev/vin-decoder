@@ -6,14 +6,18 @@
   flex-direction: column;
   gap: 20px;
 
-  p, ul>li{
-    margin: 0;
-    font-size: clamp(14px, 1.8vw, 17px);
-    margin-bottom: 10px;
-  }
-  div{
+  >ul {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  p, ul>li{
+    font-size: clamp(14px, 1.8vw, 17px);
+  }
+  >div{
+    display: flex;
+    gap: 15px;
     align-items: center;
   }
 }

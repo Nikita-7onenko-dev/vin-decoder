@@ -43,7 +43,7 @@ export function normalizeVinResponse(data: RawResponse): VinResult {
     const mapped = ERROR_MAP[code];
 
     const item = {
-      code,
+      id: code,
       message: mapped?.message || `Unknown error (${code})`,
     };
 

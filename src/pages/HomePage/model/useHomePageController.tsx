@@ -37,10 +37,10 @@ export function useHomePageController(
     if(shouldRestoreCache) {
       if(formDataValidator.vin(vinFromURL)) {
         setControllerError({
-          title: "Invalid Vin",
+          title: "Invalid VIN",
           details: [
-            {code: 1, message: "Looks like VIN doesn't survive the trip. Please check the link and try again."},
-            {code: 2, message: `Whaa? ${vinFromURL}? Nice try, though`},
+            {id: 1, message: "Looks like VIN doesn't survive the trip. Please check the link and try again."},
+            {id: 2, message: `Whaa? ${vinFromURL}? Nice try, though`},
           ]
         })
         return;

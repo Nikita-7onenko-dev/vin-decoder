@@ -10,10 +10,18 @@ import './Variables.styles.css'
 
 export default function Variables(): React.JSX.Element {
 
-  const { data, error, isLoading } = useVariables();
+  const { data, error, isLoading, retry } = useVariables();
   
   if(error) {
-    return <StatusMessage title="Error fetching variables" variant="error" details={error.message} />
+    return (
+      <>
+        <VariablesHat />
+        <StatusMessage title="Error fetching variables" variant="error" details={[
+          {id: 1, message: error.message}, 
+          {id: 2, message: <button className="main-button" onClick={retry}>Try again</button>}
+        ]} />
+    </>
+    )
   }
   
   return (

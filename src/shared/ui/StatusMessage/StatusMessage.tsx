@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import './StatusMessage.styles.css'
 import type { StatusDetail } from './StatusMessage.types';
+import { statusIcons } from './StatusMessage.icons';
 
 type Props = {
   variant: "error" | "warning";
@@ -10,10 +10,6 @@ type Props = {
 
 export default function StatusMessage({variant="error", title, details}: Props) {
 
-  const [close, setClose] = useState(false);
-
-  if(close) return null;
-
   const isMultiply = Array.isArray(details)
   let content: React.ReactNode;
 
@@ -21,7 +17,7 @@ export default function StatusMessage({variant="error", title, details}: Props) 
     content = (
       <ul>
         {details.map( d => (
-          <li key={d.code}>{d.message}</li>
+          <li key={d.id}>{d.message}</li>
         ))}
       </ul>
     )
@@ -32,11 +28,7 @@ export default function StatusMessage({variant="error", title, details}: Props) 
    return (
       <div className={`message-container message-container--${variant}`}>
         <div>
-          <h2>{title}</h2>
-          <button 
-            className='main-button'
-            onClick={() => setClose(true)}  
-          >X</button>
+          {statusIcons[variant]}<h2>{title}</h2>
         </div>
         {content}
       </div>

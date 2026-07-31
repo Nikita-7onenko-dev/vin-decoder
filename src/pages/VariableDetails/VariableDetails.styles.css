@@ -2,17 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
-
-  div:not(.variable-details__header) {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    ul li{
-      list-style: disc;
-      margin-left: 20px;
-    };
-  }
 }
 
 .variable-details__header{
@@ -26,5 +15,16 @@
   h2{
     flex-grow: 1;
     text-align: center;
+  }
+}
+
+.variable-details__description{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  ul li{
+    list-style: disc;
+    margin-left: 20px;
   }
 }

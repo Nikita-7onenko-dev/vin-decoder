@@ -1,4 +1,4 @@
 export type StatusDetail = {
-  code: number;
+  id: number;
   message: React.ReactNode;
 }

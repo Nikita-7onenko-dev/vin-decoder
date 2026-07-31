@@ -31,7 +31,6 @@ button:disabled{
   border: 1px solid var(--main-color);
   color: var(--main-color);
   font-weight: 500;
-  cursor: pointer;
   transition: color .3s ease, border-color .3s ease;
 
   &:hover:not(:disabled){

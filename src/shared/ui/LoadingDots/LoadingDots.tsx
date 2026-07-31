@@ -16,6 +16,9 @@ export default function LoadingDots() {
   }, []);
 
   return (
-    <span className="loading-dots">Loading{dots}</span>
+    <div className="loading-dots">
+      <span className="loading-dots__circle"></span>
+      <span className="loading-dots__text">Loading{dots}</span>
+    </div>
   )
 }
