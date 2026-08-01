@@ -2,6 +2,10 @@
   width: 100%;
 }
 
+.pagination__label{
+  position: relative;
+}
+
 .pagination {
   display: flex;
   justify-content: space-between;

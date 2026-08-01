@@ -1,6 +1,7 @@
 import { formDataValidator } from "@/shared/lib/formDataValidator";
 import { useEffect, useState } from "react";
 import { finalFormValidation } from "@/shared/lib/finalFormValidator";
+import CopyButton from "@/shared/ui/CopyButton/CopyButton";
 
 export type FormDataType = {
   vin: string;
@@ -95,6 +96,7 @@ export default function VinForm({onDecodeVin, autoFill, setAutoFill}: Props): Re
         onChange={changeHandler}
         onBlur={blurHandler}
       />
+      {(formData.vin && !errors.vin) && <CopyButton key={formData.vin}/>}
     </label>
   ))
 

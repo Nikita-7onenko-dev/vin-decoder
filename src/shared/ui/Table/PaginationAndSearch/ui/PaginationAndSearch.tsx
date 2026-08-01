@@ -1,3 +1,4 @@
+import CopyButton from "@/shared/ui/CopyButton/CopyButton";
 import type { TableField } from "../../Table.types";
 import { usePagination } from "../model/usePagination";
 import { useSearchParamState } from "../model/useSearchParamState";
@@ -26,7 +27,7 @@ export default function PaginationAndSearch({fields, children}: Props) {
 
   return (
     <>
-      <label htmlFor="search">
+      <label htmlFor="search" className="pagination__label">
         <input 
           type="text" 
           className="vin-form__input"
@@ -35,6 +36,7 @@ export default function PaginationAndSearch({fields, children}: Props) {
           placeholder="Come type some"
           id="search"
         />
+        {value && <CopyButton />}
       </label>
 
       {children({fields: pageItems, search: searchValue})}
