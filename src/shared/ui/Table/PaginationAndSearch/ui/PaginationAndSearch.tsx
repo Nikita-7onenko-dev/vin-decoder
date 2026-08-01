@@ -1,6 +1,6 @@
-import { useState } from "react";
 import type { TableField } from "../../Table.types";
 import { usePagination } from "../model/usePagination";
+import { useSearchParamState } from "../model/useSearchParamState";
 
 import './PaginationAndSearch.styles.css'
 
@@ -10,7 +10,8 @@ type Props = {
 }
 
 export default function PaginationAndSearch({fields, children}: Props) {
-  const [value, setValue] = useState<string>("");
+  const { value, setValue } = useSearchParamState("", "search");
+  
   const searchValue = value.toLowerCase();
   
   const searched = fields.filter(field => field.label.toLowerCase().includes(searchValue));
@@ -29,10 +30,7 @@ export default function PaginationAndSearch({fields, children}: Props) {
         <input 
           type="text" 
           className="vin-form__input"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setValue(e.target.value);
-            if(currentPage !== 1) setPage("1");
-          }}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
           value={value}
           placeholder="Come type some"
           id="search"

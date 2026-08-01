@@ -17,8 +17,8 @@
   height: var(--size);
   border-radius: 50%;
   display: inline-block;
-  border-top: 3px solid var(--main-color);
-  border-right: 3px solid transparent;
+  border-top: clamp(2px, 0.3vw, 3px) solid var(--main-color);
+  border-right: clamp(2px, 0.3vw, 3px) solid transparent;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }

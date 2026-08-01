@@ -9,10 +9,10 @@ export function useHomePageController(
   setAutoFill: (vin: string) => void, 
   addVinToHistory: (vin: string) => void
 ) {
+  const [controllerError, setControllerError] = useState<null | ControllerError>(null)
+  
   const [searchParams, setSearchParams] = useSearchParams();
   const vinFromURL = searchParams.get("vin")
-  
-  const [controllerError, setControllerError] = useState<null | ControllerError>(null)
   
   const syncVinToURL = (vin: string) => {
     if(vinFromURL === vin) return;
