@@ -1,7 +1,7 @@
 .copy-button__button{
   position: absolute;
   top: 50%;
-  right: 5px;
+  right: 4px;
   transform: translateY(-50%);
   border-radius: 25%;
   bottom: 4px;
@@ -14,6 +14,11 @@
     position: absolute;
     inset: 5px;
   }
+}
+
+.copy-button__button:disabled{
+  opacity: initial;
+  cursor: pointer;
 }
 
 .copy-button__button--clicked{

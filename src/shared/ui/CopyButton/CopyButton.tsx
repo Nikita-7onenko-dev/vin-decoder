@@ -1,11 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CopyIcon from './icons/CopyIcon/CopyIcon';
 import CheckIcon from './icons/CheckIcon/CheckIcon';
 import ErrorIcon from './icons/ErrorIcon/ErrorIcon';
+import Tooltip from '../Tooltip/Tooltip';
 
 import type { AnimationState } from './CopyButton.types';
 
 import './CopyButton.styles.css'
+
+
+const getTooltipMessage = (animationState: AnimationState) => {
+  if(animationState.startsWith("check")) return "Copied"
+  if(animationState.startsWith("error")) return "Error"  
+  return "Copy sharable link"
+}
 
 const transitions: Partial<Record<AnimationState, AnimationState>> = {
   "copy-leaving:success": "check-entering",
@@ -21,6 +29,7 @@ const transitions: Partial<Record<AnimationState, AnimationState>> = {
 export default function CopyButton() {
 
   const [animationState, setAnimationState] = useState<AnimationState>("copy-entering");
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleCopy = async () => {
     try{
@@ -31,7 +40,6 @@ export default function CopyButton() {
       console.log(err)
       setAnimationState("copy-leaving:error")
     }
-
   };
 
   useEffect(() => {
@@ -49,20 +57,25 @@ export default function CopyButton() {
   }
 
   return (
-    <button 
-      type='button'
-      className={
-        animationState === "check-entering" ||
-        animationState === "check" ||
-        animationState === "error" ? 
-          "copy-button__button copy-button__button--clicked" : 
-          "copy-button__button"
-      } 
-      onClick={handleCopy}
-    >
-      <CopyIcon animationState={animationState} handleAnimation={handleAnimation} />
-      <CheckIcon animationState={animationState} handleAnimation={handleAnimation} />
-      <ErrorIcon animationState={animationState} handleAnimation={handleAnimation} />
-    </button>
+    <>
+      <button 
+        ref={buttonRef}
+        type='button'
+        className={
+          animationState === "check-entering" ||
+          animationState === "check" ||
+          animationState === "error" ? 
+            "copy-button__button copy-button__button--clicked" : 
+            "copy-button__button"
+        } 
+        onClick={handleCopy}
+        disabled={animationState !== "copy"}
+      >
+        <CopyIcon animationState={animationState} handleAnimation={handleAnimation} />
+        <CheckIcon animationState={animationState} handleAnimation={handleAnimation} />
+        <ErrorIcon animationState={animationState} handleAnimation={handleAnimation} />
+      </button>
+      <Tooltip message={getTooltipMessage(animationState)} refTarget={buttonRef}/>
+    </>
   )
 }
