@@ -1,24 +1,21 @@
 import { useEffect, useState } from 'react'
-import CopyIcon from './icons/CopyIcon';
-import CheckIcon from './icons/CheckIcon';
+import CopyIcon from './icons/CopyIcon/CopyIcon';
+import CheckIcon from './icons/CheckIcon/CheckIcon';
+import ErrorIcon from './icons/ErrorIcon/ErrorIcon';
+
+import type { AnimationState } from './CopyButton.types';
 
 import './CopyButton.styles.css'
-import ErrorIcon from './icons/ErrorIcon';
-
-export type AnimationState =
-  | "copy"
-  | "copy-leaving"
-  | "check-entering"
-  | "check"
-  | "check-leaving"
-  | "copy-entering"
-  | "error-entering";
 
 const transitions: Partial<Record<AnimationState, AnimationState>> = {
-  "copy-leaving": "check-entering",
+  "copy-leaving:success": "check-entering",
   "check-entering": "check",
   "check-leaving": "copy-entering",
   "copy-entering": "copy",
+  "copy-leaving:error": "error-entering",
+  "error-entering": "error",
+  "error": "error-leaving",
+  "error-leaving": "copy-entering",
 }
 
 export default function CopyButton() {
@@ -27,21 +24,21 @@ export default function CopyButton() {
 
   const handleCopy = async () => {
     try{
-      setAnimationState("copy-leaving");
       await window.navigator.clipboard.writeText(window.location.href);
       
+      setAnimationState("copy-leaving:success");
     } catch(err) {
       console.log(err)
-      setAnimationState("error-entering")
+      setAnimationState("copy-leaving:error")
     }
 
   };
 
   useEffect(() => {
-    if(animationState !== "check") return;
+    if(animationState !== "check" && animationState !== "error") return;
 
     const id = setTimeout(() => {
-      setAnimationState("check-leaving")
+      setAnimationState(`${animationState}-leaving`)
     }, 3000)
 
     return () => clearTimeout(id)
@@ -56,9 +53,10 @@ export default function CopyButton() {
       type='button'
       className={
         animationState === "check-entering" ||
-        animationState === "check" ? 
-          "copy-icon__button copy-icon__button--clicked" : 
-          "copy-icon__button"
+        animationState === "check" ||
+        animationState === "error" ? 
+          "copy-button__button copy-button__button--clicked" : 
+          "copy-button__button"
       } 
       onClick={handleCopy}
     >

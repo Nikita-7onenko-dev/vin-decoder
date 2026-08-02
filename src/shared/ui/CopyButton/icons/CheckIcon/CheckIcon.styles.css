@@ -1,0 +1,36 @@
+.copy-button__check-icon{
+  stroke-dashoffset: 24.548994064331055px;
+  stroke-dasharray: 24.548994064331055px;
+}
+
+.copy-button__check-icon--visible{
+  stroke-dashoffset: 0;
+}
+
+@keyframes check-draw {
+  from {
+    stroke-dashoffset: 24;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes check-erase {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: 24;
+  }
+}
+
+.copy-button__check-icon--entering{
+  animation: check-draw 250ms forwards;
+}
+
+.copy-button__check-icon--leaving{
+  animation: check-erase 250ms forwards;
+}

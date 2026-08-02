@@ -1,21 +1,20 @@
-import type { AnimationState } from "../CopyButton"
-
-type Props = {
-  animationState: AnimationState
-  handleAnimation: () => void
-}
+import type { IconProps } from "../../CopyButton.types"
+import "./CopyIcon.styles.css"
 
 const classNames = {
   "check": "display-none",
   "check-entering": "display-none",
   "check-leaving": "display-none",
-  "copy": "copy",
-  "copy-entering": "copy copy-entering",
-  "copy-leaving": "copy copy-leaving",
-  "error-entering" : "display-none"
+  "copy": "copy-button__copy-icon",
+  "copy-entering": "copy-button__copy-icon copy-button__copy-icon--entering",
+  "copy-leaving:success": "copy-button__copy-icon copy-button__copy-icon--leaving",
+  "copy-leaving:error": "copy-button__copy-icon copy-button__copy-icon--leaving",
+  "error-entering" : "display-none",
+  "error": "display-none",
+  "error-leaving" : "display-none"
 }
 
-export default function CopyIcon({ animationState, handleAnimation }: Props) {
+export default function CopyIcon({ animationState, handleAnimation }: IconProps) {
 
   return (
     <svg

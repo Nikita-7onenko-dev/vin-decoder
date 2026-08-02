@@ -1,0 +1,32 @@
+.copy-button__copy-icon{
+  stroke-dashoffset: 0;
+  stroke-dasharray: 79.99430847167969px;
+}
+
+@keyframes copy-draw {
+  from {
+    stroke-dashoffset: 80;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes copy-erase {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: 80;
+  }
+}
+
+.copy-button__copy-icon--entering{
+  animation: copy-draw 500ms forwards;
+}
+
+.copy-button__copy-icon--leaving{
+  animation: copy-erase 500ms forwards;
+}

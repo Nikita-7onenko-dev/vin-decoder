@@ -1,15 +1,14 @@
-.copy-icon__button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 25%;
+.copy-button__button{
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  border-radius: 25%;
+  bottom: 4px;
   width: 35px;
   height: 35px;
-  transition: background-color 0.3s ease;
-  color: var(--white);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: inherit;
 
   svg{
     position: absolute;
@@ -17,65 +16,15 @@
   }
 }
 
-.copy-icon__button--clicked{
+.copy-button__button--clicked{
   background-color: #ffffff0e;
+  color: var(--white)
 }
 
-.copy-icon__button:hover{
-  background-color: #ffffff0e;
-}
-
-.copy {
-  stroke-dashoffset: 0;
-  stroke-dasharray: 79.99430847167969px;
-}
-
-.check {
-  stroke-dashoffset: 24.548994064331055px;
-  stroke-dasharray: 24.548994064331055px;
-}
-
-.check-visible{
-  stroke-dashoffset: 0;
-}
-
-@keyframes copy-draw {
-  from {
-    stroke-dashoffset: 80;
-  }
-
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes copy-erase {
-  from {
-    stroke-dashoffset: 0;
-  }
-
-  to {
-    stroke-dashoffset: 80;
-  }
-}
-
-@keyframes check-draw {
-  from {
-    stroke-dashoffset: 24;
-  }
-
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes check-erase {
-  from {
-    stroke-dashoffset: 0;
-  }
-
-  to {
-    stroke-dashoffset: 24;
+@media (hover: hover) {
+  .copy-button__button:hover {
+      background: #ffffff0e;
+      color: var(--white);
   }
 }
 
@@ -83,114 +32,4 @@
   display: none;
 }
 
-.copy-entering {
-  animation: copy-draw 500ms forwards;
-}
 
-.copy-leaving{
-  animation: copy-erase 500ms forwards;
-}
-
-.check-entering{
-  animation: check-draw 250ms forwards;
-}
-
-.check-leaving{
-  animation: check-erase 250ms forwards;
-}
-
-
-
-.error-icon-1 {
-  stroke-dasharray: 7;
-  stroke-dashoffset: 7;
-}
-
-.error-icon-2 {
-  stroke-dasharray: 2;
-  stroke-dashoffset: 2;
-}
-
-.error-icon-3 {
-  stroke-dasharray: 64.83185307179586;
-  stroke-dashoffset: 64.83185307179586;
-}
-
-@keyframes error-line-draw {
-  from {
-    stroke-dashoffset: 7;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes error-dot-draw {
-  from {
-    stroke-dashoffset: 2;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes error-circle-draw {
-  from {
-    stroke-dashoffset: 64.83185307179586;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes error-line-erase {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: 7;
-  }
-}
-
-@keyframes error-dot-erase {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: 2;
-  }
-}
-
-@keyframes error-circle-erase {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: 64.83185307179586;
-  }
-}
-
-.error-entering.error-icon-3 {
-  animation: error-circle-draw 250ms forwards;
-}
-
-.error-entering.error-icon-1 {
-  animation: error-line-draw 250ms 120ms forwards;
-}
-
-.error-entering.error-icon-2 {
-  animation: error-dot-draw 120ms 240ms forwards;
-}
-
-
-.error-leaving.error-icon-1 {
-  animation: error-line-erase 250ms forwards;
-}
-
-.error-leaving.error-icon-2 {
-  animation: error-dot-erase 250ms forwards;
-}
-
-.error-leaving.error-icon-3 {
-  animation: error-circle-erase 250ms forwards;
-}
