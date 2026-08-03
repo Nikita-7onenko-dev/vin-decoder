@@ -15,7 +15,7 @@ export default function Tooltip({ message, refTarget }: Props) {
 
   const [isShowTooltip, setIsShowTooltip] = useState<boolean>(false);
   const refMessage = useRef<HTMLParagraphElement>(null);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<number>(null);
 
   const onPointerEnter = (e: PointerEvent) => {
     if(e.pointerType !== "touch") setIsShowTooltip(true);
@@ -28,20 +28,20 @@ export default function Tooltip({ message, refTarget }: Props) {
   const onPointerDown = (e: PointerEvent) => {
     if(e.pointerType !== "touch")  return;
     
-    if (timeoutRef.current) {
+    if(timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
 
     setIsShowTooltip(true);
 
-    timeoutRef.current = window.setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setIsShowTooltip(false);
       timeoutRef.current = null;
     }, 3000);
   };
 
   useEffect(() => {
-    if (!refTarget.current) return;
+    if(!refTarget.current) return;
     const target = refTarget.current;
 
     target.addEventListener("pointerenter", onPointerEnter);
@@ -56,7 +56,7 @@ export default function Tooltip({ message, refTarget }: Props) {
   }, []);
 
   useLayoutEffect(() => {
-    if (!refTarget.current || !refMessage.current) return;
+    if(!refTarget.current || !refMessage.current) return;
     if(!isShowTooltip) return;
     
     const target = refTarget.current;
@@ -69,8 +69,8 @@ export default function Tooltip({ message, refTarget }: Props) {
 
     const { left, top } = getTooltipCoords(targetRect, tooltipRect);
 
-    tooltip.style.left = left + "px"
-    tooltip.style.top = top + "px"
+    tooltip.style.left = left + "px";
+    tooltip.style.top = top + "px";
     
   }, [message, isShowTooltip])
 

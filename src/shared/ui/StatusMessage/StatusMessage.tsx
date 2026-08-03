@@ -3,7 +3,7 @@ import type { StatusDetail } from './StatusMessage.types';
 import { statusIcons } from './StatusMessage.icons';
 
 type Props = {
-  variant: "error" | "warning";
+  variant: "error" | "warning" | "success";
   title: string;
   details: string | StatusDetail[];
 }

@@ -4,7 +4,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 
   >ul {
     display: flex;
@@ -13,12 +13,16 @@
   }
 
   p, ul>li{
-    font-size: clamp(14px, 1.8vw, 17px);
+    font-size: clamp(14px, 2.5vw, 17px);
   }
   >div{
     display: flex;
     gap: 15px;
     align-items: center;
+  }
+
+  svg{
+    flex-shrink: 0;
   }
 }
 
@@ -28,4 +32,8 @@
 
 .message-container--warning {
   background-color: var(--warning-color);
+}
+
+.message-container--success{
+  background-color: #2b6d1599;
 }

@@ -24,9 +24,9 @@
 }
 
 .copy-button__copy-icon--entering{
-  animation: copy-draw 500ms forwards;
+  animation: copy-draw 250ms forwards;
 }
 
 .copy-button__copy-icon--leaving{
-  animation: copy-erase 500ms forwards;
+  animation: copy-erase 250ms forwards;
 }

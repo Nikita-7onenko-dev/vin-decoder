@@ -3,6 +3,9 @@ import  LoadingDots  from "@/shared/ui/LoadingDots/LoadingDots";
 import  StatusMessage  from "@/shared/ui/StatusMessage/StatusMessage";
 import { useVinSearch } from "../../api/useVinSearch";
 import type { ControllerError } from "./VinDecodeResult.types";
+import type { StatusDetail } from "@/shared/ui/StatusMessage/StatusMessage.types";
+import { getSuccessMessage } from "./lib/getSuccessMessage";
+
 
 type Props = {
   validVin: string
@@ -31,20 +34,19 @@ export default function VinDecodeResult({validVin, controllerError}: Props) {
   
   const isInvalidVin = data.errors.length > 0;
   const hasWarnings = data.warnings.length > 0;
-  let warnings = null;
 
   if (isInvalidVin) {
     return <StatusMessage title="Error: Invalid VIN" variant="error" details={data.errors} />
   }
 
-  if(hasWarnings) {
-    warnings = <StatusMessage title="Warnings" variant="warning" details={data.warnings} />
-  }
-  
+  const successDetails: StatusDetail[] = getSuccessMessage(data.message);
+   
   return (
     <>
-      <p>{data.message}</p>
-      {warnings}
+      <div className="home-page__message-container">
+        {successDetails && <StatusMessage title="Results returned successfully" variant="success" details={successDetails}/>}
+        {hasWarnings && <StatusMessage title="Warnings" variant="warning" details={data.warnings} />}
+      </div>
       <DataTable fields={data.fields} />
     </>
   );

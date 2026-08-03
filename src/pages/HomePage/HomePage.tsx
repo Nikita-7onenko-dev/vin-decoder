@@ -14,7 +14,6 @@ export default function HomePage() {
   const {validVin, setValidVin, autoFill, setAutoFill} = useVinSearchState();
 
   const { onDecodeVin, onSelectVin, controllerError } = useHomePageController(validVin, setValidVin, setAutoFill, addVinToHistory)
-
   return (
     <>
       <VinForm onDecodeVin={onDecodeVin} autoFill={autoFill} setAutoFill={setAutoFill}/>

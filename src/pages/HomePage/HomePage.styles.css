@@ -87,3 +87,10 @@
   font-weight: 600;
   color: var(--white);
 }
+
+
+.home-page__message-container{
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+}
