@@ -10,9 +10,9 @@ Single Page Application for decoding vehicle VIN numbers using the NHTSA API.
 
 You can use any of the following VINs to test the application:
 
-- 1FTFW1CT5DFC10312  
-- WDDGF3BB4DF968608  
-- WVGEK9BP3CD010788
+- [1FTFW1CT5DFC10312](https://nikita-7onenko-dev.github.io/vin-decoder/#/?vin=1FTFW1CT5DFC10312)  
+- [WDDGF3BB4DF968608](https://nikita-7onenko-dev.github.io/vin-decoder/#/?vin=WDDGF3BB4DF968608)  
+- [WVGEK9BP3CD010788](https://nikita-7onenko-dev.github.io/vin-decoder/#/?vin=WVGEK9BP3CD010788)
 
 ## ⚙️ Features
 
